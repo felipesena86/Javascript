@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disco Voador</title>
+<style>
+    #disco-voador {
+        width: 50px;
+        height: 50px;
+        
+        position: absolute;
+    }
+</style>
+</head>
+<body>
+
+<div id="disco-voador"><img src="ufo.png" alt="Disco Voador" id="ufo.png"></div>
+<audio id="som-movimento">
+    <source src="ufo-moving.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+<script>
+    // Seleciona o disco voador
+    const discoVoador = document.getElementById('disco-voador');
+    const somMovimento = document.getElementById('som-movimento');
+
+    // Posição inicial do disco voador
+    let posX = 0;
+    let posY = 0;
+
+    // Função para atualizar a posição do disco voador
+    function atualizarPosicao() {
+        discoVoador.style.left = posX + 'px';
+        discoVoador.style.top = posY + 'px';
+    }
+
+    // Função para mover o disco voador
+    function moverDiscoVoador(event) {
+        switch(event.key) {
+            case 'ArrowUp':
+                posY -= 10;
+                break;
+            case 'ArrowDown':
+                posY += 10;
+                break;
+            case 'ArrowLeft':
+                posX -= 10;
+                break;
+            case 'ArrowRight':
+                posX += 10;
+                break;
+        }
+        somMovimento.play(); // Reproduz o som de movimento
+        atualizarPosicao();
+    }
+
+    // Adiciona um ouvinte de eventos de teclado
+    document.addEventListener('keydown', moverDiscoVoador);
+</script>
+
+</body>
+</html>
